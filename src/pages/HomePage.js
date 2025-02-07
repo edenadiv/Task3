@@ -7,6 +7,7 @@ import carData from "../data/cars.json";
 
 function HomePage() {
   const [cars, setCars] = useState([]);
+
   const [selectedFilters, setSelectedFilters] = useState({
     type: {
       Sport: false,
@@ -24,17 +25,33 @@ function HomePage() {
     price: [0, 100],
   });
 
+  // Load cars and favorites from localStorage
   useEffect(() => {
-    setCars(carData.cars);
+    const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const updatedCars = carData.cars.map((car) => ({
+      ...car,
+      favorite: savedFavorites.includes(car.id),
+    }));
+    setCars(updatedCars);
   }, []);
+
+  // Save favorites to localStorage whenever cars state changes
+  useEffect(() => {
+    const favoriteIds = cars.filter((car) => car.favorite).map((car) => car.id);
+    localStorage.setItem("favorites", JSON.stringify(favoriteIds));
+  }, [cars]);
 
   const filteredCars = cars.filter((car) => {
     // Filter by type
-    const selectedTypes = Object.entries(selectedFilters.type).filter(([, checked]) => checked).map(([type]) => type);
+    const selectedTypes = Object.entries(selectedFilters.type)
+      .filter(([, checked]) => checked)
+      .map(([type]) => type);
     if (selectedTypes.length > 0 && !selectedTypes.includes(car.type)) return false;
 
     // Filter by capacity
-    const selectedCapacities = Object.entries(selectedFilters.capacity).filter(([, checked]) => checked).map(([capacity]) => capacity);
+    const selectedCapacities = Object.entries(selectedFilters.capacity)
+      .filter(([, checked]) => checked)
+      .map(([capacity]) => capacity);
     if (selectedCapacities.length > 0 && !selectedCapacities.includes(`${car.capacity} Person`)) return false;
 
     // Filter by price
@@ -55,7 +72,9 @@ function HomePage() {
       <Box sx={{ display: "flex", padding: "20px" }}>
         <Sidebar selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} />
         <Box sx={{ flex: 1, paddingLeft: "20px" }}>
-          <Typography variant="h4" gutterBottom>Cars Catalogue</Typography>
+          <Typography variant="h4" gutterBottom>
+            Cars Catalogue
+          </Typography>
           <Grid container spacing={3}>
             {filteredCars.map((car) => (
               <Grid item key={car.id}>

@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Button, Box, IconButton } from "@mui/material";
+import { AppBar, Toolbar, Typography, Box, IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { Link } from "react-router-dom";
 
@@ -16,16 +16,8 @@ function Navbar() {
           ShenCarCar
         </Typography>
 
-        {/* Navigation Links */}
-        <Box sx={{ display: "flex", alignItems: "center", gap: "20px" }}>
-          <Button color="inherit" component={Link} to="/" sx={{ fontWeight: "600" }}>
-            Home
-          </Button>
-          <Button color="inherit" component={Link} to="/favorites" sx={{ fontWeight: "600" }}>
-            Favorites
-          </Button>
-
-          {/* Favorites Icon */}
+        {/* Favorites Icon */}
+        <Box>
           <IconButton component={Link} to="/favorites" sx={{ color: "inherit" }}>
             <FavoriteIcon />
           </IconButton>
