@@ -1,13 +1,13 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, Box, IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { Link } from "react-router-dom";
 
-function Navbar() {
+function Navbar({ favoritesCount }) {
   return (
     <AppBar position="static" color="primary" sx={{ backgroundColor: "#3563E9" }}>
       <Toolbar>
-        {/* Logo and Brand Name */}
         <Typography
           variant="h6"
           component={Link}
@@ -17,10 +17,9 @@ function Navbar() {
           Eden Task
         </Typography>
 
-        {/* Favorites Icon */}
         <Box>
           <IconButton component={Link} to="/favorites" sx={{ color: "inherit" }}>
-            <FavoriteIcon />
+            {favoritesCount > 0 ? <FavoriteIcon /> : <FavoriteBorderIcon />}
           </IconButton>
         </Box>
       </Toolbar>

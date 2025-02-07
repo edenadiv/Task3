@@ -7,6 +7,7 @@ import carData from "../data/cars.json";
 
 function HomePage() {
   const [cars, setCars] = useState([]);
+  const [favoritesCount, setFavoritesCount] = useState(0);
 
   const [selectedFilters, setSelectedFilters] = useState({
     type: {
@@ -25,7 +26,6 @@ function HomePage() {
     price: [0, 100],
   });
 
-
   useEffect(() => {
     const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     const updatedCars = carData.cars.map((car) => ({
@@ -33,13 +33,8 @@ function HomePage() {
       favorite: savedFavorites.includes(car.id),
     }));
     setCars(updatedCars);
+    setFavoritesCount(savedFavorites.length);
   }, []);
-
-
-  useEffect(() => {
-    const favoriteIds = cars.filter((car) => car.favorite).map((car) => car.id);
-    localStorage.setItem("favorites", JSON.stringify(favoriteIds));
-  }, [cars]);
 
   const filteredCars = cars.filter((car) => {
 
@@ -47,6 +42,7 @@ function HomePage() {
       .filter(([, checked]) => checked)
       .map(([type]) => type);
     if (selectedTypes.length > 0 && !selectedTypes.includes(car.type)) return false;
+
 
     const selectedCapacities = Object.entries(selectedFilters.capacity)
       .filter(([, checked]) => checked)
@@ -59,14 +55,19 @@ function HomePage() {
   });
 
   const toggleFavorite = (id) => {
-    setCars((prev) =>
-      prev.map((car) => (car.id === id ? { ...car, favorite: !car.favorite } : car))
+    const updatedCars = cars.map((car) =>
+      car.id === id ? { ...car, favorite: !car.favorite } : car
     );
+    setCars(updatedCars);
+
+    const favoriteIds = updatedCars.filter((car) => car.favorite).map((car) => car.id);
+    localStorage.setItem("favorites", JSON.stringify(favoriteIds));
+    setFavoritesCount(favoriteIds.length);
   };
 
   return (
     <Box>
-      <Navbar />
+      <Navbar favoritesCount={favoritesCount} />
       <Box sx={{ display: "flex", padding: "20px" }}>
         <Sidebar selectedFilters={selectedFilters} setSelectedFilters={setSelectedFilters} />
         <Box sx={{ flex: 1, paddingLeft: "20px" }}>

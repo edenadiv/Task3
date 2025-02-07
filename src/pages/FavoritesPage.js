@@ -6,11 +6,13 @@ import carData from "../data/cars.json";
 
 function FavoritesPage() {
   const [favoriteCars, setFavoriteCars] = useState([]);
+  const [favoritesCount, setFavoritesCount] = useState(0);
 
   useEffect(() => {
     const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     const updatedFavorites = carData.cars.filter((car) => savedFavorites.includes(car.id));
     setFavoriteCars(updatedFavorites);
+    setFavoritesCount(savedFavorites.length);
   }, []);
 
   const toggleFavorite = (id) => {
@@ -20,11 +22,12 @@ function FavoritesPage() {
     const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     const newFavorites = savedFavorites.filter((favId) => favId !== id);
     localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    setFavoritesCount(newFavorites.length);
   };
 
   return (
     <Box>
-      <Navbar />
+      <Navbar favoritesCount={favoritesCount} />
       <Box sx={{ padding: "20px" }}>
         <Typography variant="h4" gutterBottom>
           Favorite Cars
