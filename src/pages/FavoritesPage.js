@@ -10,7 +10,7 @@ function FavoritesPage() {
   const [favoritesCount, setFavoritesCount] = useState(0);
 
   useEffect(() => {
-    const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const savedFavorites = JSON.parse(sessionStorage.getItem("favorites")) || [];
     const updatedFavorites = carData.cars.filter((car) => savedFavorites.includes(car.id));
     setFavoriteCars(updatedFavorites);
     setFavoritesCount(savedFavorites.length);
@@ -20,9 +20,9 @@ function FavoritesPage() {
     const updatedFavorites = favoriteCars.filter((car) => car.id !== id);
     setFavoriteCars(updatedFavorites);
 
-    const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const savedFavorites = JSON.parse(sessionStorage.getItem("favorites")) || [];
     const newFavorites = savedFavorites.filter((favId) => favId !== id);
-    localStorage.setItem("favorites", JSON.stringify(newFavorites));
+    sessionStorage.setItem("favorites", JSON.stringify(newFavorites));
     setFavoritesCount(newFavorites.length);
   };
 

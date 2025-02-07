@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import carData from "../data/cars.json";
 import { Container, Typography, Button, Grid, CardMedia } from "@mui/material";
 import Footer from "../components/Footer"
+import Navbar from "../components/Navbar";
 
 function CarDetails() {
   const { id } = useParams();
@@ -12,6 +13,8 @@ function CarDetails() {
 
   return (
     <Container>
+      <Navbar/>
+      <Container>
       <Typography variant="h4">{car.name}</Typography>
       <Grid container spacing={2}>
         {car.images.map((image, index) => (
@@ -26,6 +29,7 @@ function CarDetails() {
       <Button variant="contained" color="primary" component={Link} to="/">
         Back to Home
       </Button>
+      </Container>
       <Footer/>
     </Container>
   );

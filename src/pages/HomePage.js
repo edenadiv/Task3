@@ -24,12 +24,11 @@ function HomePage() {
       "4 Person": false,
       "6 Person": false,
     },
-    price: [0, 100],
+    price: [45, 95],
   });
 
-  // Load cars and favorites from localStorage
   useEffect(() => {
-    const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    const savedFavorites = JSON.parse(sessionStorage.getItem("favorites")) || [];
     const updatedCars = carData.cars.map((car) => ({
       ...car,
       favorite: savedFavorites.includes(car.id),
@@ -39,19 +38,16 @@ function HomePage() {
   }, []);
 
   const filteredCars = cars.filter((car) => {
-    // Filter by type
     const selectedTypes = Object.entries(selectedFilters.type)
       .filter(([, checked]) => checked)
       .map(([type]) => type);
     if (selectedTypes.length > 0 && !selectedTypes.includes(car.type)) return false;
 
-    // Filter by capacity
     const selectedCapacities = Object.entries(selectedFilters.capacity)
       .filter(([, checked]) => checked)
       .map(([capacity]) => capacity);
     if (selectedCapacities.length > 0 && !selectedCapacities.includes(`${car.capacity} Person`)) return false;
 
-    // Filter by price
     if (car.daily_price < selectedFilters.price[0] || car.daily_price > selectedFilters.price[1]) return false;
 
     return true;
@@ -63,9 +59,8 @@ function HomePage() {
     );
     setCars(updatedCars);
 
-    // Update localStorage directly
     const favoriteIds = updatedCars.filter((car) => car.favorite).map((car) => car.id);
-    localStorage.setItem("favorites", JSON.stringify(favoriteIds));
+    sessionStorage.setItem("favorites", JSON.stringify(favoriteIds));
     setFavoritesCount(favoriteIds.length);
   };
 
