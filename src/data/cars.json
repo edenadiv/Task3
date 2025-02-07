@@ -1,0 +1,82 @@
+{
+    "cars": [
+        {
+            "id": 1,
+            "name": "Zeta Prime",
+            "type": "Sedan",
+            "capacity": 4,
+            "daily_price": 45,
+            "images": [
+                "/images/zeta_prime_1.png",
+                "/images/zeta_prime_2.png",
+                "/images/zeta_prime_3.png"
+            ],
+            "favorite": false
+        },
+        {
+            "id": 2,
+            "name": "Omega Cruiser",
+            "type": "SUV",
+            "capacity": 6,
+            "daily_price": 80,
+            "images": [
+                "/images/omega_cruiser_1.png",
+                "/images/omega_cruiser_2.png",
+                "/images/omega_cruiser_3.png"
+            ],
+            "favorite": true
+        },
+        {
+            "id": 3,
+            "name": "Nebula X",
+            "type": "Convertible",
+            "capacity": 2,
+            "daily_price": 95,
+            "images": [
+                "/images/nebula_x_1.png",
+                "/images/nebula_x_2.png",
+                "/images/nebula_x_3.png"
+            ],
+            "favorite": false
+        },
+        {
+            "id": 4,
+            "name": "Quantum Runner",
+            "type": "Truck",
+            "capacity": 3,
+            "daily_price": 60,
+            "images": [
+                "/images/quantum_runner_1.png",
+                "/images/quantum_runner_2.png",
+                "/images/quantum_runner_3.png"
+            ],
+            "favorite": true
+        },
+        {
+            "id": 5,
+            "name": "HyperVolt",
+            "type": "Electric",
+            "capacity": 5,
+            "daily_price": 70,
+            "images": [
+                "/images/hypervolt_1.png",
+                "/images/hypervolt_2.png",
+                "/images/hypervolt_3.png"
+            ],
+            "favorite": false
+        },
+        {
+            "id": 6,
+            "name": "Solaris GT",
+            "type": "Coupe",
+            "capacity": 2,
+            "daily_price": 85,
+            "images": [
+                "/images/solaris_gt_1.png",
+                "/images/solaris_gt_2.png",
+                "/images/solaris_gt_3.png"
+            ],
+            "favorite": false
+        }
+    ]
+}
