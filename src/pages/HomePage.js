@@ -26,6 +26,7 @@ function HomePage() {
     price: [0, 100],
   });
 
+  // Load cars and favorites from localStorage
   useEffect(() => {
     const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     const updatedCars = carData.cars.map((car) => ({
@@ -37,18 +38,19 @@ function HomePage() {
   }, []);
 
   const filteredCars = cars.filter((car) => {
-
+    // Filter by type
     const selectedTypes = Object.entries(selectedFilters.type)
       .filter(([, checked]) => checked)
       .map(([type]) => type);
     if (selectedTypes.length > 0 && !selectedTypes.includes(car.type)) return false;
 
-
+    // Filter by capacity
     const selectedCapacities = Object.entries(selectedFilters.capacity)
       .filter(([, checked]) => checked)
       .map(([capacity]) => capacity);
     if (selectedCapacities.length > 0 && !selectedCapacities.includes(`${car.capacity} Person`)) return false;
 
+    // Filter by price
     if (car.daily_price < selectedFilters.price[0] || car.daily_price > selectedFilters.price[1]) return false;
 
     return true;
@@ -60,9 +62,14 @@ function HomePage() {
     );
     setCars(updatedCars);
 
+    // Update localStorage directly
     const favoriteIds = updatedCars.filter((car) => car.favorite).map((car) => car.id);
     localStorage.setItem("favorites", JSON.stringify(favoriteIds));
     setFavoritesCount(favoriteIds.length);
+  };
+
+  const handleRent = (id) => {
+    alert(`Car with ID: ${id} has been rented successfully!`);
   };
 
   return (
@@ -77,7 +84,7 @@ function HomePage() {
           <Grid container spacing={3}>
             {filteredCars.map((car) => (
               <Grid item key={car.id}>
-                <CarCard car={car} toggleFavorite={toggleFavorite} />
+                <CarCard car={car} toggleFavorite={toggleFavorite} onRent={handleRent} />
               </Grid>
             ))}
           </Grid>

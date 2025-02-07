@@ -2,6 +2,7 @@ import React from "react";
 import { Card, CardMedia, CardContent, Typography, Button, Box, IconButton } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import { Link } from "react-router-dom";
 
 function CarCard({ car, toggleFavorite }) {
   return (
@@ -23,7 +24,13 @@ function CarCard({ car, toggleFavorite }) {
         <Typography variant="body2" color="textSecondary">{car.type}</Typography>
         <Typography variant="h6" color="primary">${car.daily_price}/day</Typography>
         <Box sx={{ marginTop: "10px" }}>
-          <Button variant="contained" color="primary" fullWidth>
+          <Button 
+            variant="contained" 
+            color="primary" 
+            fullWidth 
+            component={Link} 
+            to={`/car/${car.id}`}
+          >
             Rent Now
           </Button>
         </Box>

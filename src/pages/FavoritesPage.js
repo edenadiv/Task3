@@ -25,6 +25,10 @@ function FavoritesPage() {
     setFavoritesCount(newFavorites.length);
   };
 
+  const handleRent = (id) => {
+    alert(`Car with ID: ${id} has been rented successfully!`);
+  };
+
   return (
     <Box>
       <Navbar favoritesCount={favoritesCount} />
@@ -35,7 +39,7 @@ function FavoritesPage() {
         <Grid container spacing={3}>
           {favoriteCars.map((car) => (
             <Grid item key={car.id}>
-              <CarCard car={car} toggleFavorite={toggleFavorite} />
+              <CarCard car={car} toggleFavorite={toggleFavorite} onRent={handleRent} />
             </Grid>
           ))}
         </Grid>
