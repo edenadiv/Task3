@@ -2,6 +2,7 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import carData from "../data/cars.json";
 import { Container, Typography, Button, Grid, CardMedia } from "@mui/material";
+import Footer from "../components/Footer"
 
 function CarDetails() {
   const { id } = useParams();
@@ -25,6 +26,7 @@ function CarDetails() {
       <Button variant="contained" color="primary" component={Link} to="/">
         Back to Home
       </Button>
+      <Footer/>
     </Container>
   );
 }

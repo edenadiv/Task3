@@ -3,6 +3,7 @@ import { Grid, Box, Typography } from "@mui/material";
 import Navbar from "../components/Navbar";
 import CarCard from "../components/CarCard";
 import carData from "../data/cars.json";
+import Footer from "../components/Footer"
 
 function FavoritesPage() {
   const [favoriteCars, setFavoriteCars] = useState([]);
@@ -44,6 +45,7 @@ function FavoritesPage() {
           ))}
         </Grid>
       </Box>
+      <Footer/>
     </Box>
   );
 }

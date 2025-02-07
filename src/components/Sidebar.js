@@ -21,7 +21,6 @@ function Sidebar({ selectedFilters, setSelectedFilters }) {
 
   return (
     <Box sx={{ width: "250px", padding: "20px", background: "#f5f5f5", borderRadius: "10px" }}>
-      {/* Type Filter */}
       <Typography variant="h6" gutterBottom>Type</Typography>
       <FormGroup>
         {["Sport", "SUV", "MPV", "Sedan", "Coupe", "Hatchback"].map((type) => (
@@ -33,7 +32,6 @@ function Sidebar({ selectedFilters, setSelectedFilters }) {
         ))}
       </FormGroup>
 
-      {/* Capacity Filter */}
       <Typography variant="h6" gutterBottom>Capacity</Typography>
       <FormGroup>
         {["2 Person", "4 Person", "6 Person"].map((capacity) => (
@@ -45,17 +43,17 @@ function Sidebar({ selectedFilters, setSelectedFilters }) {
         ))}
       </FormGroup>
 
-      {/* Price Slider */}
       <Typography variant="h6" gutterBottom>Price (per day)</Typography>
       <Slider
         value={selectedFilters.price}
         onChange={handlePriceChange}
-        min={0}
-        max={100}
+        min={45}
+        max={95}
         valueLabelDisplay="auto"
         sx={{ color: "#3563E9" }}
       />
-      <Typography>Max: ${selectedFilters.price[1]}</Typography>
+      <Typography>Min: $45</Typography>
+      <Typography>Max: $95</Typography>
     </Box>
   );
 }

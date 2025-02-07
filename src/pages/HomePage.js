@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import CarCard from "../components/CarCard";
 import carData from "../data/cars.json";
+import Footer from "../components/Footer"
 
 function HomePage() {
   const [cars, setCars] = useState([]);
@@ -90,6 +91,7 @@ function HomePage() {
           </Grid>
         </Box>
       </Box>
+      <Footer />
     </Box>
   );
 }
