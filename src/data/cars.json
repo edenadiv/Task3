@@ -24,12 +24,12 @@
                 "/images/omega_cruiser_2.png",
                 "/images/omega_cruiser_3.png"
             ],
-            "favorite": true
+            "favorite": false
         },
         {
             "id": 3,
             "name": "Nebula X",
-            "type": "Convertible",
+            "type": "Sport",
             "capacity": 2,
             "daily_price": 95,
             "images": [
@@ -42,7 +42,7 @@
         {
             "id": 4,
             "name": "Quantum Runner",
-            "type": "Truck",
+            "type": "MPV",
             "capacity": 3,
             "daily_price": 60,
             "images": [
@@ -50,13 +50,13 @@
                 "/images/quantum_runner_2.png",
                 "/images/quantum_runner_3.png"
             ],
-            "favorite": true
+            "favorite": false
         },
         {
             "id": 5,
             "name": "HyperVolt",
-            "type": "Electric",
-            "capacity": 5,
+            "type": "Hatchback",
+            "capacity": 4,
             "daily_price": 70,
             "images": [
                 "/images/hypervolt_1.png",
