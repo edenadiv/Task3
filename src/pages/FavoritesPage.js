@@ -7,7 +7,6 @@ import carData from "../data/cars.json";
 function FavoritesPage() {
   const [favoriteCars, setFavoriteCars] = useState([]);
 
-  // Load favorite cars from localStorage
   useEffect(() => {
     const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     const updatedFavorites = carData.cars.filter((car) => savedFavorites.includes(car.id));

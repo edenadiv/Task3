@@ -10,10 +10,11 @@ function Navbar() {
         {/* Logo and Brand Name */}
         <Typography
           variant="h6"
-          component="div"
-          sx={{ flexGrow: 1, fontWeight: "bold", fontSize: "24px" }}
+          component={Link}
+          to="/"
+          sx={{ flexGrow: 1, fontWeight: "bold", fontSize: "24px", textDecoration: "none", color: "inherit" }}
         >
-          ShenCarCar
+          Eden Task
         </Typography>
 
         {/* Favorites Icon */}

@@ -25,7 +25,7 @@ function HomePage() {
     price: [0, 100],
   });
 
-  // Load cars and favorites from localStorage
+
   useEffect(() => {
     const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
     const updatedCars = carData.cars.map((car) => ({
@@ -35,26 +35,24 @@ function HomePage() {
     setCars(updatedCars);
   }, []);
 
-  // Save favorites to localStorage whenever cars state changes
+
   useEffect(() => {
     const favoriteIds = cars.filter((car) => car.favorite).map((car) => car.id);
     localStorage.setItem("favorites", JSON.stringify(favoriteIds));
   }, [cars]);
 
   const filteredCars = cars.filter((car) => {
-    // Filter by type
+
     const selectedTypes = Object.entries(selectedFilters.type)
       .filter(([, checked]) => checked)
       .map(([type]) => type);
     if (selectedTypes.length > 0 && !selectedTypes.includes(car.type)) return false;
 
-    // Filter by capacity
     const selectedCapacities = Object.entries(selectedFilters.capacity)
       .filter(([, checked]) => checked)
       .map(([capacity]) => capacity);
     if (selectedCapacities.length > 0 && !selectedCapacities.includes(`${car.capacity} Person`)) return false;
 
-    // Filter by price
     if (car.daily_price < selectedFilters.price[0] || car.daily_price > selectedFilters.price[1]) return false;
 
     return true;
