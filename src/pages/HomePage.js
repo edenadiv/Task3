@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import carData from "../data/cars.json";
+import { Container, Grid, Typography } from "@mui/material";
+import Navbar from "../components/Navbar";
+import SearchBar from "../components/SearchBar";
+import CarCard from "../components/CarCard";
 
 function HomePage() {
   const [cars, setCars] = useState([]);
@@ -10,30 +13,25 @@ function HomePage() {
     setCars(carData.cars);
   }, []);
 
-  const filteredCars = cars.filter(car => 
+  const filteredCars = cars.filter(car =>
     car.name.toLowerCase().includes(search.toLowerCase())
   );
 
   return (
-    <div>
-      <h1>Car Rental</h1>
-      <input 
-        type="text" 
-        placeholder="Search cars..." 
-        value={search} 
-        onChange={(e) => setSearch(e.target.value)} 
-      />
-      <div>
+    <Container>
+      <Navbar />
+      <Typography variant="h4" sx={{ textAlign: "center", marginTop: "20px" }}>
+        Available Cars
+      </Typography>
+      <SearchBar search={search} setSearch={setSearch} />
+      <Grid container spacing={3} justifyContent="center">
         {filteredCars.map((car) => (
-          <div key={car.id}>
-            <h2>{car.name}</h2>
-            <img src={car.images[0]} alt={car.name} width="200" />
-            <p>Daily Price: ${car.daily_price}</p>
-            <Link to={`/car/${car.id}`}>View Details</Link>
-          </div>
+          <Grid item key={car.id}>
+            <CarCard car={car} />
+          </Grid>
         ))}
-      </div>
-    </div>
+      </Grid>
+    </Container>
   );
 }
 
